@@ -40,8 +40,7 @@ We build AgentClinic as a single **Next.js** (App Router) application written in
 - Target modern browsers only (per Steve) — no legacy-browser polyfills.
 - Keep server and client responsibilities clearly separated.
 - Style with vanilla CSS — CSS Modules for component-scoped styles and global
-  CSS for app-wide styles. No CSS framework (e.g. Tailwind) and no component
-  library.
+  CSS for app-wide styles. No CSS framework and no component library.
 
 > The database choice is intentionally left for a later decision and will be
 > recorded here once confirmed.

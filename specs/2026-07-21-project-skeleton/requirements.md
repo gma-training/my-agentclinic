@@ -23,7 +23,7 @@ establishes the foundation every later phase builds on.
   stack).
 - Ailments, therapies, agents, appointments, dashboards, or routing beyond the
   home page.
-- A CSS framework (e.g. Tailwind) — we use vanilla CSS (see decisions).
+- A CSS framework — we use vanilla CSS (see decisions).
 - A component library (deferred until a phase needs rich components).
 
 ## Decisions
@@ -37,8 +37,8 @@ establishes the foundation every later phase builds on.
 2. **Vanilla CSS; no CSS framework, no component library.**
    Styling uses vanilla CSS — CSS Modules for component-scoped styles and global
    CSS for app-wide styles — per the [tech stack](../tech-stack.md). No CSS
-   framework (e.g. Tailwind) is used. This keeps the foundation minimal and easy
-   to read as a teaching reference. A component library remains deferred until a
+   framework is used. This keeps the foundation minimal and easy to read as a
+   teaching reference. A component library remains deferred until a
    phase needs rich components.
 
 3. **Branded landing page.**

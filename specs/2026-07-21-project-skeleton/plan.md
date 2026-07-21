@@ -8,8 +8,8 @@ Numbered task groups. Complete and verify each group before moving on.
      `tsc`/commonjs `package.json` scripts, the old `tsconfig.json`, and
      `src/index.ts`.
 1.2. Scaffold a fresh app at the repo root with `create-next-app`: TypeScript,
-     App Router, ESLint, **no Tailwind** (plain CSS), `src/` directory, import
-     alias `@/*`.
+     App Router, ESLint, no CSS framework (vanilla CSS), `src/` directory,
+     import alias `@/*`.
 1.3. Confirm `tsconfig.json` has `strict: true`.
 1.4. Verify `.gitignore` covers `node_modules`, `.next`, and build output.
 
