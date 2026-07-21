@@ -26,8 +26,8 @@ The phase is done and mergeable when all of the following hold.
 - [ ] The app is a Next.js App Router project in TypeScript at the repo root.
 - [ ] `tsconfig.json` has `strict: true`.
 - [ ] The old bare TS setup (`src/index.ts`, `tsc` build) is gone.
-- [ ] No Tailwind or component library is present (plain CSS only), consistent
-      with the Phase 0 decision.
+- [ ] Styling is vanilla CSS (CSS Modules / global CSS); no CSS framework or
+      component library is present, per the tech stack.
 - [ ] `.gitignore` excludes `node_modules`, `.next`, and build artifacts.
 
 ## Docs

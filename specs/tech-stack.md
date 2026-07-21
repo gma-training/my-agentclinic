@@ -29,7 +29,7 @@ We build AgentClinic as a single **Next.js** (App Router) application written in
 | Language           | TypeScript (`strict` mode)                |
 | Framework          | Next.js (App Router)                      |
 | UI                 | React (server + client components)        |
-| Styling            | Tailwind CSS + a component library        |
+| Styling            | Vanilla CSS (CSS Modules / global CSS)    |
 | Data access / API  | Next.js route handlers / server actions   |
 | Runtime            | Node.js                                   |
 | Package manager    | npm                                       |
@@ -39,6 +39,9 @@ We build AgentClinic as a single **Next.js** (App Router) application written in
 - TypeScript `strict` stays on; prefer explicit types at module boundaries.
 - Target modern browsers only (per Steve) — no legacy-browser polyfills.
 - Keep server and client responsibilities clearly separated.
+- Style with vanilla CSS — CSS Modules for component-scoped styles and global
+  CSS for app-wide styles. No CSS framework (e.g. Tailwind) and no component
+  library.
 
 > The database choice is intentionally left for a later decision and will be
 > recorded here once confirmed.

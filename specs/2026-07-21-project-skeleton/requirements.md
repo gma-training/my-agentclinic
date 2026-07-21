@@ -23,8 +23,8 @@ establishes the foundation every later phase builds on.
   stack).
 - Ailments, therapies, agents, appointments, dashboards, or routing beyond the
   home page.
+- A CSS framework (e.g. Tailwind) — we use vanilla CSS (see decisions).
 - A component library (deferred until a phase needs rich components).
-- Tailwind CSS (see decisions — deliberately deferred for this phase).
 
 ## Decisions
 
@@ -34,14 +34,12 @@ establishes the foundation every later phase builds on.
    `create-next-app` (TypeScript, App Router, ESLint). Cleanest path and matches
    the tech-stack recommendation of a single Next.js app.
 
-2. **Plain CSS for now; no Tailwind, no component library yet.**
-   The [tech stack](../tech-stack.md) names Tailwind CSS + a component library as
-   the eventual target. For the skeleton we intentionally start with plain/global
-   CSS to keep the foundation minimal and easy to read as a teaching reference.
-   _This is a known deviation from the tech stack;_ Tailwind and a component
-   library will be introduced in a later phase (likely Phase 7 — Polish, or
-   whenever the first rich UI needs it) and the tech-stack doc should be revisited
-   then.
+2. **Vanilla CSS; no CSS framework, no component library.**
+   Styling uses vanilla CSS — CSS Modules for component-scoped styles and global
+   CSS for app-wide styles — per the [tech stack](../tech-stack.md). No CSS
+   framework (e.g. Tailwind) is used. This keeps the foundation minimal and easy
+   to read as a teaching reference. A component library remains deferred until a
+   phase needs rich components.
 
 3. **Branded landing page.**
    The home page shows the AgentClinic brand, the "relief from your humans"
