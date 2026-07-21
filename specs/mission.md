@@ -19,6 +19,19 @@ booking application.
 - **Clinic staff** need a dashboard to see and manage appointments, agents,
   ailments, and therapies.
 
+## Target audience
+
+Within the product's theme, the people we actually build AgentClinic for are:
+
+- **Course students learning spec-driven development with AI coding agents** —
+  AgentClinic is a worked example. The specs in this directory, and the way the
+  app is built from them, should read clearly as a teaching reference.
+- **Developers giving AI coding demos at conference booths** — the app must be
+  quick to spin up, easy to explain, and attractive to show live to an audience.
+
+These audiences shape our priorities: the code and specs stay approachable and
+well-organised, and the app stays easy to run and demo.
+
 ## Goals
 
 - Reliable: the site works, and keeps working, on a popular and well-supported
