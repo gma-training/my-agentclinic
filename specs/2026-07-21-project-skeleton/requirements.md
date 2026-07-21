@@ -50,12 +50,16 @@ establishes the foundation every later phase builds on.
    The Next.js app lives at the repo root (not a subdirectory) to keep the
    project structure flat and approachable for course students and demos.
 
-5. **System fonts, not Google Fonts.**
-   The `create-next-app` default fetches the Geist font from Google Fonts at
-   build time, which fails behind the environment's egress firewall and makes
-   the build depend on a network call. We use a system font stack
-   (`system-ui`, …) instead — no external fetch, so the build and demo stay
-   reliable and quick to spin up.
+5. **Vendor the Geist font locally (no Google Fonts fetch).**
+   We keep the scaffold's intended Geist typeface, but self-host it instead of
+   fetching from Google Fonts. The variable `woff2` files (Geist Sans and Geist
+   Mono) are committed under `src/app/fonts/` alongside their SIL OFL license,
+   and loaded with `next/font/local`. This keeps the Geist look with **zero**
+   network dependency at build or runtime, so the build and demo stay reliable
+   and quick to spin up. (The `create-next-app` default uses
+   `next/font/google`, which fetches Geist from Google Fonts at build time — a
+   network call we deliberately avoid rather than open the egress firewall to
+   Google's font CDN.)
 
 ## Context
 
