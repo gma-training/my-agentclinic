@@ -50,6 +50,13 @@ establishes the foundation every later phase builds on.
    The Next.js app lives at the repo root (not a subdirectory) to keep the
    project structure flat and approachable for course students and demos.
 
+5. **System fonts, not Google Fonts.**
+   The `create-next-app` default fetches the Geist font from Google Fonts at
+   build time, which fails behind the environment's egress firewall and makes
+   the build depend on a network call. We use a system font stack
+   (`system-ui`, …) instead — no external fetch, so the build and demo stay
+   reliable and quick to spin up.
+
 ## Context
 
 - **Product mission:** AgentClinic is a genuine, working clinic-booking product
