@@ -6,7 +6,7 @@ data) so the app is always demoable, then the next phase builds on it.
 
 Phases are intentionally small; ship, review, and move on.
 
-## Phase 0 — Project skeleton
+## Phase 0 — Project skeleton (Complete)
 
 - Scaffold the Next.js + TypeScript app.
 - Home page renders in a modern browser with basic styling.
