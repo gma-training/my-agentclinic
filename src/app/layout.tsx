@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import "@picocss/pico/css/pico.classless.min.css";
 import "./globals.css";
 
 // Geist is vendored locally (src/app/fonts) so the build has no network
