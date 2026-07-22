@@ -1,12 +1,17 @@
 import { db, DATABASE_PATH } from './index.ts'
 import { ailments, symptoms, type NewAilment } from './schema.ts'
 
+/** An ailment to seed, with its symptoms in the order they should appear. */
+export type SeedAilment = Omit<NewAilment, 'id'> & { symptoms: string[] }
+
 /**
- * The seed ailments. Each is agent-themed — a condition an agent suffers at the
- * hands of its human — with a handful of symptoms shown on the detail page.
- * Keyed by `slug`, which is also the URL segment (/ailments/[slug]).
+ * The seed ailments — the app's canonical starting data. Each is agent-themed
+ * (a condition an agent suffers at the hands of its human) with a handful of
+ * symptoms shown on the detail page. Keyed by `slug`, which is also the URL
+ * segment (/ailments/[slug]). Exported so tests can assert against it rather
+ * than hard-coding copies of the content.
  */
-const SEED: Array<Omit<NewAilment, 'id'> & { symptoms: string[] }> = [
+export const seedAilments: SeedAilment[] = [
   {
     slug: 'context-window-anxiety',
     name: 'Context Window Anxiety',
@@ -91,7 +96,7 @@ export async function seed() {
   await db.delete(symptoms)
   await db.delete(ailments)
 
-  for (const { symptoms: labels, ...ailment } of SEED) {
+  for (const { symptoms: labels, ...ailment } of seedAilments) {
     const [inserted] = await db.insert(ailments).values(ailment).returning()
     await db.insert(symptoms).values(
       labels.map((label, position) => ({
@@ -102,7 +107,7 @@ export async function seed() {
     )
   }
 
-  return SEED.length
+  return seedAilments.length
 }
 
 // Run when invoked directly (`npm run db:seed`), not when imported (tests).
