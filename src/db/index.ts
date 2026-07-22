@@ -1,5 +1,4 @@
 import { drizzle } from 'drizzle-orm/node-sqlite'
-import * as schema from './schema'
 
 /**
  * Path to the SQLite database file. Overridable via `DATABASE_PATH` so tests
@@ -15,7 +14,5 @@ export const DATABASE_PATH = process.env.DATABASE_PATH ?? 'agentclinic.db'
  * are not enforced by SQLite unless explicitly enabled, so we turn them on for
  * every connection to make the `symptoms → ailments` cascade real.
  */
-export const db = drizzle({ connection: { path: DATABASE_PATH }, schema })
+export const db = drizzle({ connection: { path: DATABASE_PATH } })
 db.$client.exec('PRAGMA foreign_keys = ON')
-
-export { schema }
