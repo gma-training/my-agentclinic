@@ -11,7 +11,7 @@ The phase is done and mergeable when all of the following hold.
       boundary.
 - [x] A seed script populates ~6 on-theme ailments (each with a slug, severity,
       and symptoms) and is safe to re-run (idempotent).
-- [ ] `getAllAilments()` returns every seeded ailment; `getAilmentBySlug(slug)`
+- [x] `getAllAilments()` returns every seeded ailment; `getAilmentBySlug(slug)`
       returns one ailment (with its symptoms) or a not-found result for an
       unknown slug. Both are covered by passing Vitest tests.
 

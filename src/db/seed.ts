@@ -105,5 +105,8 @@ export async function seed() {
   return SEED.length
 }
 
-const count = await seed()
-console.log(`Seeded ${count} ailments into ${DATABASE_PATH}`)
+// Run when invoked directly (`npm run db:seed`), not when imported (tests).
+if (import.meta.main) {
+  const count = await seed()
+  console.log(`Seeded ${count} ailments into ${DATABASE_PATH}`)
+}
