@@ -1,63 +1,14 @@
+/*
+ * The visual design comes from Pico CSS (the class-less build, imported in
+ * layout.tsx). We only override Pico's type variables so it uses the locally
+ * vendored Geist fonts.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --muted: #5b6370;
-  --border: #e6e8eb;
-  --accent: #2f6df6;
+  --pico-font-family-sans-serif: var(--font-geist-sans), system-ui, sans-serif;
+  --pico-font-family-monospace: var(--font-geist-mono), monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --muted: #9aa4b2;
-    --border: #232629;
-    --accent: #6ea0ff;
-  }
-}
-
-html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family:
-    var(--font-geist-sans),
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    Roboto,
-    Helvetica,
-    Arial,
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Accent brand words in the clinic's primary colour (theme-aware via Pico). */
+.accent {
+  color: var(--pico-primary);
 }

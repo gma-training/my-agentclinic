@@ -19,8 +19,8 @@ We build AgentClinic as a single **Next.js** (App Router) application written in
 - **Dashboards.** React plus server components make the agent and staff
   dashboards straightforward to build and keep fast.
 - **Attractive by default.** Modern rendering, good performance, and easy
-  integration with a component/styling system for a polished modern-browser
-  experience.
+  integration with **Pico CSS** for a polished modern-browser experience with
+  minimal styling effort.
 
 ## Layers
 
@@ -29,7 +29,7 @@ We build AgentClinic as a single **Next.js** (App Router) application written in
 | Language           | TypeScript (`strict` mode)                |
 | Framework          | Next.js (App Router)                      |
 | UI                 | React (server + client components)        |
-| Styling            | Vanilla CSS (CSS Modules / global CSS)    |
+| Styling            | Pico CSS (semantic classless framework)   |
 | Data access / API  | Next.js route handlers / server actions   |
 | Runtime            | Node.js                                   |
 | Package manager    | npm                                       |
@@ -57,8 +57,9 @@ Tooling, in two layers:
 - TypeScript `strict` stays on; prefer explicit types at module boundaries.
 - Target modern browsers only (per Steve) — no legacy-browser polyfills.
 - Keep server and client responsibilities clearly separated.
-- Style with vanilla CSS — CSS Modules for component-scoped styles and global
-  CSS for app-wide styles. No CSS framework and no component library.
+- Style with **Pico CSS**, a lightweight, mostly classless framework that styles
+  semantic HTML elements directly — giving an attractive modern look with minimal
+  markup. Reach for custom CSS only where Pico's defaults fall short.
 
 > The database choice is intentionally left for a later decision and will be
 > recorded here once confirmed.
