@@ -10,7 +10,9 @@
     "test": "vitest",
     "test:e2e": "playwright test",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "node src/db/migrate.ts"
+    "db:migrate": "node src/db/migrate.ts",
+    "db:seed": "node src/db/seed.ts",
+    "db:setup": "npm run db:migrate && npm run db:seed"
   },
   "dependencies": {
     "@picocss/pico": "^2.1.1",
