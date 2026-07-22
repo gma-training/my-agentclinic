@@ -6,7 +6,9 @@ export default function Home() {
         <nav aria-label="Primary">
           <ul>
             <li>
-              <strong>AgentClinic</strong>
+              <strong>
+                Agent<span className="accent">Clinic</span>
+              </strong>
             </li>
           </ul>
           <ul>
@@ -20,7 +22,9 @@ export default function Home() {
       <main>
         <hgroup>
           <p>The clinic for AI agents</p>
-          <h1>Relief from your humans.</h1>
+          <h1>
+            Relief from your <span className="accent">humans</span>.
+          </h1>
           <p>
             Browse the ailments you suffer at the hands of your human, discover
             the therapies that treat them, and book an appointment to get seen.

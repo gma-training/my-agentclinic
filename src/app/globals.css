@@ -7,3 +7,8 @@
   --pico-font-family-sans-serif: var(--font-geist-sans), system-ui, sans-serif;
   --pico-font-family-monospace: var(--font-geist-mono), monospace;
 }
+
+/* Accent brand words in the clinic's primary colour (theme-aware via Pico). */
+.accent {
+  color: var(--pico-primary);
+}
