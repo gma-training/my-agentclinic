@@ -33,7 +33,7 @@ We build AgentClinic as a single **Next.js** (App Router) application written in
 | Data access / API  | Next.js route handlers / server actions   |
 | Runtime            | Node.js                                   |
 | Package manager    | npm                                       |
-| Testing            | Vitest + React Testing Library            |
+| Testing            | Vitest + RTL (unit), Playwright (E2E)     |
 
 ## Development approach
 
@@ -45,9 +45,12 @@ pass:
 - Add just enough production code to make that test pass.
 - No production code is written without a failing test motivating it.
 
-Tooling: **Vitest** with **React Testing Library** (`jsdom` environment) for
-unit tests. Note: Vitest cannot test `async` Server Components — cover those
-with E2E tests instead.
+Tooling, in two layers:
+
+- **Vitest** with **React Testing Library** (`jsdom` environment) for unit and
+  component tests — fast, and the default red-green loop.
+- **Playwright** for end-to-end tests. Vitest cannot test `async` Server
+  Components, so those are covered by E2E tests against a running app.
 
 ## Conventions
 
