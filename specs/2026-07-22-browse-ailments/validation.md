@@ -4,10 +4,10 @@ The phase is done and mergeable when all of the following hold.
 
 ## Data layer
 
-- [ ] A SQLite database is defined with Drizzle: an `ailments` table
+- [x] A SQLite database is defined with Drizzle: an `ailments` table
       (`id`, unique `slug`, `name`, `shortDescription`, `severity`) and a
       related `symptoms` table (one ailment → many symptoms).
-- [ ] `severity` is constrained to `mild | moderate | severe` at the type
+- [x] `severity` is constrained to `mild | moderate | severe` at the type
       boundary.
 - [ ] A seed script populates ~6 on-theme ailments (each with a slug, severity,
       and symptoms) and is safe to re-run (idempotent).
