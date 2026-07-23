@@ -26,14 +26,17 @@
 	},
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
 	"workspaceFolder": "/workspace",
-	"postCreateCommand": "npm install",
+	"postCreateCommand": "npm install && npx playwright install chromium",
 	"postStartCommand": "sudo /usr/local/bin/init-firewall.sh",
 	"waitFor": "postStartCommand",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/github-cli:1": {},
-		"ghcr.io/jungaretti/features/ripgrep:1": {}
+		"ghcr.io/jungaretti/features/ripgrep:1": {},
+		"ghcr.io/gma/devcontainer-features/playwright:1": {
+			"browsers": "chromium"
+		}
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
