@@ -13,6 +13,12 @@ rule below: a test should
 fail for exactly one reason, and its failure message should tell you what broke
 without opening the test.
 
+## Name test files `*.test.ts` / `*.test.tsx`, never `*.spec.*`
+
+Every test file uses the `.test.` infix — Vitest unit tests and Playwright
+end-to-end tests alike. Both runners discover `.test.` files, so a single
+convention covers both.
+
 ## Structure every test as Arrange — Act — Assert
 
 ```ts

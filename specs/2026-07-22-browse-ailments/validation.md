@@ -37,9 +37,9 @@ The phase is done and mergeable when all of the following hold.
 
 ## Tests
 
-- [ ] `npm test` (Vitest) passes: data-access and presentational-component
+- [x] `npm test` (Vitest) passes: data-access and presentational-component
       tests are green.
-- [ ] `npm run test:e2e` (Playwright) passes: list shows all ailments, clicking
+- [x] `npm run test:e2e` (Playwright) passes: list shows all ailments, clicking
       through reaches a detail page with symptoms/severity, and an unknown slug
       404s.
 

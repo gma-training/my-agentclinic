@@ -2,7 +2,8 @@ import { afterEach, beforeAll, beforeEach, describe, expect, test } from 'vitest
 import { getDb } from './index.ts'
 import { getAllAilments, getAilmentBySlug } from './ailments.ts'
 import { runMigrations } from './migrate.ts'
-import { seed, seedAilments } from './seed.ts'
+import { seed } from './seed.ts'
+import { seedAilments } from './seed-data.ts'
 
 // These functions read back what the seed put in, so the seed is the source of
 // truth: assertions compare against `seedAilments` instead of hard-coded copies
