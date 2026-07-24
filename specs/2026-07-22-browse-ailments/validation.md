@@ -26,14 +26,14 @@ The phase is done and mergeable when all of the following hold.
 
 - [x] `/ailments/[slug]` shows the ailment's name, severity, short description,
       and its list of symptoms.
-- [ ] A link returns the user to `/ailments`.
+- [x] A link returns the user to `/ailments`.
 - [x] An unknown slug (e.g. `/ailments/does-not-exist`) renders an on-theme
       not-found UI **and** responds with HTTP 404.
 
 ## Navigation
 
-- [ ] The header "Ailments" nav item links to `/ailments`.
-- [ ] "Therapies" and "Book" remain inert (unchanged from Phase 0).
+- [x] The header "Ailments" nav item links to `/ailments`.
+- [x] "Therapies" and "Book" remain inert (unchanged from Phase 0).
 
 ## Tests
 

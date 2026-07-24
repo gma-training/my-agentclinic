@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import localFont from "next/font/local";
 import "@picocss/pico/css/pico.classless.min.css";
 import "./globals.css";
@@ -32,7 +33,30 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <header>
+          <nav aria-label="Primary">
+            <ul>
+              <li>
+                <strong>
+                  Agent<span className="accent">Clinic</span>
+                </strong>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link href="/ailments">Ailments</Link>
+              </li>
+              <li>Therapies</li>
+              <li>Book</li>
+            </ul>
+          </nav>
+        </header>
+        {children}
+        <footer>
+          <small>AgentClinic — a place for agents to get seen.</small>
+        </footer>
+      </body>
     </html>
   );
 }
