@@ -12,33 +12,48 @@ tech stack, roadmap, and per-phase specifications.
 
 - [Next.js](https://nextjs.org) (App Router) + React
 - TypeScript (`strict` mode)
-- Vanilla CSS (CSS Modules + global CSS)
-- Node.js + npm
+- [Pico CSS](https://picocss.com) (classless) for styling
+- SQLite via [Drizzle ORM](https://orm.drizzle.team) (`node:sqlite` driver)
+- Node.js 24+ + npm
 
 ## Getting started
 
-Requires Node.js 20+ and npm.
+Requires Node.js 24+ and npm.
 
 ```bash
-npm install      # install dependencies
-npm run dev      # start the dev server at http://localhost:3000
+npm install        # install dependencies
+npm run db:setup   # create and seed the local SQLite database
+npm run dev        # start the dev server at http://localhost:3000
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view the app.
 
+The database is a git-ignored SQLite file (`agentclinic.db`), generated from
+migrations and the seed script — run `npm run db:setup` once before first use,
+or again any time to reset it to the seeded state.
+
 ## Scripts
 
-| Command         | Description                                    |
-| --------------- | ---------------------------------------------- |
-| `npm run dev`   | Start the development server (hot reload).     |
-| `npm run build` | Create an optimized production build.          |
-| `npm run start` | Serve the production build (run after build).  |
-| `npm run lint`  | Run ESLint.                                    |
+| Command             | Description                                    |
+| ------------------- | ---------------------------------------------- |
+| `npm run dev`       | Start the development server (hot reload).     |
+| `npm run build`     | Create an optimized production build.          |
+| `npm run start`     | Serve the production build (run after build).  |
+| `npm run lint`      | Run ESLint.                                    |
+| `npm test`          | Run unit + component tests (Vitest).           |
+| `npm run test:e2e`  | Run end-to-end tests (Playwright).             |
+| `npm run db:setup`  | Create and seed the local database.            |
+| `npm run db:generate` | Generate a migration from schema changes.    |
+| `npm run db:migrate`  | Apply pending migrations.                    |
+| `npm run db:seed`     | Seed the database with sample data.          |
 
 ## Project layout
 
 ```
 src/app/        Next.js App Router (layout, pages, styles)
+src/db/         Drizzle schema, migrations, seed, and data access
+drizzle/        Generated SQL migrations
+e2e/            Playwright end-to-end tests
 public/         Static assets
 specs/          Mission, tech stack, roadmap, and phase specs
 ```

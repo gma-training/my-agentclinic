@@ -31,7 +31,8 @@ We build AgentClinic as a single **Next.js** (App Router) application written in
 | UI                 | React (server + client components)        |
 | Styling            | Pico CSS (semantic classless framework)   |
 | Data access / API  | Next.js route handlers / server actions   |
-| Runtime            | Node.js                                   |
+| Database           | SQLite via Drizzle ORM (`node:sqlite`)    |
+| Runtime            | Node.js 24+                               |
 | Package manager    | npm                                       |
 | Testing            | Vitest + RTL (unit), Playwright (E2E)     |
 
@@ -61,5 +62,20 @@ Tooling, in two layers:
   semantic HTML elements directly — giving an attractive modern look with minimal
   markup. Reach for custom CSS only where Pico's defaults fall short.
 
-> The database choice is intentionally left for a later decision and will be
-> recorded here once confirmed.
+## Database
+
+**SQLite via [Drizzle ORM](https://orm.drizzle.team), using Node's built-in
+`node:sqlite` driver** — resolved in the
+[browse-ailments phase](./2026-07-22-browse-ailments/requirements.md).
+
+- **Approachable teaching reference.** Drizzle's schema is plain TypeScript and
+  its queries read like SQL, so the data layer stays visible rather than hidden
+  behind heavy abstraction.
+- **Zero-network, zero-build.** `node:sqlite` ships with Node (24+): no native
+  addon to compile, no prebuilt binary downloaded at install time — matching the
+  project's zero-network stance. (`better-sqlite3`, considered first, downloads
+  binaries.) Drizzle itself is pure TypeScript with no code-generation step.
+- **Generated, not committed.** The SQLite file is git-ignored and rebuilt from
+  migrations plus a seed script (`npm run db:setup`), so there's no external
+  service to run and every environment starts from the same known state. The
+  path is overridable via `DATABASE_PATH` (tests use a throwaway database).

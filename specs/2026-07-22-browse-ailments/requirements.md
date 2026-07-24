@@ -37,24 +37,25 @@ persisting domain data.
 
 ## Decisions
 
-1. **Persistence: SQLite via Drizzle ORM (`better-sqlite3`).**
+1. **Persistence: SQLite via Drizzle ORM (Node's built-in `node:sqlite`).**
    The roadmap now requires modelling and persisting data, so we resolve the
    database choice the tech stack deferred. We use a local **SQLite** database
-   accessed through **Drizzle ORM** with the **`better-sqlite3`** driver.
+   accessed through **Drizzle ORM** with the built-in **`node:sqlite`** driver.
    Rationale:
    - *Popular & reliable stack* (mission): SQLite + Drizzle is a mainstream,
      well-supported combination for Next.js.
    - *Approachable teaching reference* (mission): Drizzle's schema is plain
      TypeScript and its queries read like SQL, so students see the data layer
      clearly rather than behind heavy abstraction.
-   - *Quick to spin up / reliable demos* (mission): a single committed SQLite
-     file with a seed script means no external database service to run. This
-     also keeps the **zero-network** stance the project already adopted for
-     fonts — Drizzle is pure TypeScript with **no code-generation or binary
-     download step** (unlike a query-engine-based ORM).
-   - This decision must be **recorded back into
-     [tech-stack.md](../tech-stack.md)** (replacing the "database choice is
-     deferred" note) — see [plan.md](./plan.md).
+   - *Quick to spin up / reliable demos* (mission): the SQLite file is generated
+     from migrations and a seed script (git-ignored, not committed), so there is
+     no external database service to run and every environment starts from the
+     same known state. `node:sqlite` also keeps the project's **zero-network**
+     stance: it ships with Node, so there is **no binary download at install
+     time** (which `better-sqlite3`, considered first, would require), and
+     Drizzle itself is pure TypeScript with no code-generation step.
+   - This decision is **recorded in [tech-stack.md](../tech-stack.md)**
+     (replacing the "database choice is deferred" note) — see [plan.md](./plan.md).
 
 2. **URL identifier: human-readable `slug`.**
    Detail pages are keyed by a slug (e.g. `/ailments/context-window-anxiety`)

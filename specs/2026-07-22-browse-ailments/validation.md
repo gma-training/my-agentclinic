@@ -45,22 +45,22 @@ The phase is done and mergeable when all of the following hold.
 
 ## Build & scripts
 
-- [ ] `npm run build` completes with **no** TypeScript or lint errors
+- [x] `npm run build` completes with **no** TypeScript or lint errors
       (`strict` stays on).
-- [ ] `npm run lint` passes.
-- [ ] `npm run dev` serves `/ailments` and a detail page in a modern browser
+- [x] `npm run lint` passes.
+- [x] `npm run dev` serves `/ailments` and a detail page in a modern browser
       with Pico styling applied.
-- [ ] Documented setup (generate/migrate/seed) works from a fresh clone so a
+- [x] Documented setup (generate/migrate/seed) works from a fresh clone so a
       reviewer can get a populated database and run the app.
 
 ## Docs
 
-- [ ] [tech-stack.md](../tech-stack.md) records the database decision (SQLite +
-      Drizzle + `better-sqlite3`), replacing the deferred-decision note.
-- [ ] `README.md` documents the database setup/seed steps.
+- [x] [tech-stack.md](../tech-stack.md) records the database decision (SQLite +
+      Drizzle + `node:sqlite`), replacing the deferred-decision note.
+- [x] `README.md` documents the database setup/seed steps.
 
 ## Outcome check
 
-- [ ] Per the roadmap: **an agent can see what ails them.** A reviewer can run
+- [x] Per the roadmap: **an agent can see what ails them.** A reviewer can run
       the app, open `/ailments`, browse the list, and click into an ailment to
       read its details — the slice is demoable end-to-end.
