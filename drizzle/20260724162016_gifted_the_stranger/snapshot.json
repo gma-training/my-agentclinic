@@ -1,0 +1,359 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "id": "3c44554c-abfd-4ca3-ac4c-7680eb3b66a3",
+  "prevIds": [
+    "c74bba88-5fe4-45eb-8284-e507983564f4"
+  ],
+  "ddl": [
+    {
+      "name": "agents",
+      "entityType": "tables"
+    },
+    {
+      "name": "ailment_therapies",
+      "entityType": "tables"
+    },
+    {
+      "name": "ailments",
+      "entityType": "tables"
+    },
+    {
+      "name": "symptoms",
+      "entityType": "tables"
+    },
+    {
+      "name": "therapies",
+      "entityType": "tables"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": true,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "agents"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "slug",
+      "entityType": "columns",
+      "table": "agents"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "name",
+      "entityType": "columns",
+      "table": "agents"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "model",
+      "entityType": "columns",
+      "table": "agents"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "bio",
+      "entityType": "columns",
+      "table": "agents"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "ailment_id",
+      "entityType": "columns",
+      "table": "ailment_therapies"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "therapy_id",
+      "entityType": "columns",
+      "table": "ailment_therapies"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": true,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "ailments"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "slug",
+      "entityType": "columns",
+      "table": "ailments"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "name",
+      "entityType": "columns",
+      "table": "ailments"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "short_description",
+      "entityType": "columns",
+      "table": "ailments"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "severity",
+      "entityType": "columns",
+      "table": "ailments"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": true,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "symptoms"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "ailment_id",
+      "entityType": "columns",
+      "table": "symptoms"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "label",
+      "entityType": "columns",
+      "table": "symptoms"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": "0",
+      "generated": null,
+      "name": "position",
+      "entityType": "columns",
+      "table": "symptoms"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": true,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "therapies"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "slug",
+      "entityType": "columns",
+      "table": "therapies"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "name",
+      "entityType": "columns",
+      "table": "therapies"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "short_description",
+      "entityType": "columns",
+      "table": "therapies"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "duration_minutes",
+      "entityType": "columns",
+      "table": "therapies"
+    },
+    {
+      "columns": [
+        "ailment_id"
+      ],
+      "tableTo": "ailments",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_ailment_therapies_ailment_id_ailments_id_fk",
+      "entityType": "fks",
+      "table": "ailment_therapies"
+    },
+    {
+      "columns": [
+        "therapy_id"
+      ],
+      "tableTo": "therapies",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_ailment_therapies_therapy_id_therapies_id_fk",
+      "entityType": "fks",
+      "table": "ailment_therapies"
+    },
+    {
+      "columns": [
+        "ailment_id"
+      ],
+      "tableTo": "ailments",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_symptoms_ailment_id_ailments_id_fk",
+      "entityType": "fks",
+      "table": "symptoms"
+    },
+    {
+      "columns": [
+        "ailment_id",
+        "therapy_id"
+      ],
+      "nameExplicit": false,
+      "name": "ailment_therapies_pk",
+      "entityType": "pks",
+      "table": "ailment_therapies"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "agents_pk",
+      "table": "agents",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "ailments_pk",
+      "table": "ailments",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "symptoms_pk",
+      "table": "symptoms",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "therapies_pk",
+      "table": "therapies",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "slug"
+      ],
+      "nameExplicit": false,
+      "name": "agents_slug_unique",
+      "entityType": "uniques",
+      "table": "agents"
+    },
+    {
+      "columns": [
+        "slug"
+      ],
+      "nameExplicit": false,
+      "name": "ailments_slug_unique",
+      "entityType": "uniques",
+      "table": "ailments"
+    },
+    {
+      "columns": [
+        "slug"
+      ],
+      "nameExplicit": false,
+      "name": "therapies_slug_unique",
+      "entityType": "uniques",
+      "table": "therapies"
+    }
+  ],
+  "renames": []
+}
