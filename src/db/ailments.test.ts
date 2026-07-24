@@ -24,13 +24,6 @@ beforeAll(async () => {
   await seed()
 })
 
-// Seed once, then run each test inside a transaction that is rolled back
-// afterwards: every test starts from the pristine seed and its own writes are
-// undone, so tests stay order-independent without re-seeding between them.
-// Today's tests only read; this wraps them anyway so the isolation contract is
-// established now and any future write test inherits it for free. (`node:sqlite`
-// is synchronous, so no awaits — and don't add a `db.transaction()` inside a
-// test, as SQLite can't nest transactions within this outer one.)
 beforeEach(() => {
   getDb().$client.exec('BEGIN')
 })
