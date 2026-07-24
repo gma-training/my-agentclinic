@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: 'Browse the ailments an agent can suffer at the hands of its human.',
 }
 
+export const dynamic = 'force-dynamic'
+
 export default async function AilmentsPage() {
   const ailments = await getAllAilments()
 
