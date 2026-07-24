@@ -1,7 +1,4 @@
-import { afterAll, beforeAll, describe, expect, test } from 'vitest'
-import { mkdtempSync, rmSync } from 'node:fs'
-import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { beforeAll, describe, expect, test } from 'vitest'
 import { getAllAilments, getAilmentBySlug } from './ailments.ts'
 import { runMigrations } from './migrate.ts'
 import { seed, seedAilments } from './seed.ts'
@@ -10,22 +7,19 @@ import { seed, seedAilments } from './seed.ts'
 // truth: assertions compare against `seedAilments` instead of hard-coded copies
 // of its content — adding or reworording an ailment can't quietly break them.
 //
-// Setup points DATABASE_PATH at a throwaway file, then migrates + seeds it, so
-// the whole suite runs against an isolated database and never touches the dev
-// one. The connection is opened lazily on first query (see ./index.ts), so
-// setting the env before the first query (below) is what makes it take effect.
-let tmpDir: string
-
+// The suite runs against whatever DATABASE_PATH points at; the `test` npm
+// script sets it to a throwaway file so the dev database is never touched. We
+// migrate + seed that database once up front — but guard first, so a bare
+// `vitest` run that forgot the env can't silently clobber the default database.
 beforeAll(async () => {
-  tmpDir = mkdtempSync(join(tmpdir(), 'agentclinic-test-'))
-  process.env.DATABASE_PATH = join(tmpDir, 'test.db')
+  if (!process.env.DATABASE_PATH) {
+    throw new Error(
+      'DATABASE_PATH must point at a throwaway database — run the tests via `npm test`.',
+    )
+  }
 
   runMigrations()
   await seed()
-})
-
-afterAll(() => {
-  rmSync(tmpDir, { recursive: true, force: true })
 })
 
 // Any seeded ailment stands in for "a real one" in the single-record tests.
