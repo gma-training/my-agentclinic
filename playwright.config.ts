@@ -17,9 +17,12 @@ export default defineConfig({
     },
   ],
   // Run tests against the production build, as the Next.js guide recommends.
+  // The server runs against an in-memory database (seeded on startup by
+  // src/instrumentation.ts) so the tests never touch the dev database.
   webServer: {
     command: 'npm run build && npm run start',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
+    env: { DATABASE_PATH: ':memory:' },
   },
 })
