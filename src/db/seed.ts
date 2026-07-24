@@ -1,4 +1,4 @@
-import { db, DATABASE_PATH } from './index.ts'
+import { databasePath, getDb } from './index.ts'
 import { ailments, symptoms, type NewAilment } from './schema.ts'
 
 /** An ailment to seed, with its symptoms in the order they should appear. */
@@ -93,6 +93,8 @@ export const seedAilments: SeedAilment[] = [
  * explicitly too so seeding works regardless of foreign-key settings.
  */
 export async function seed() {
+  const db = getDb()
+
   await db.delete(symptoms)
   await db.delete(ailments)
 
@@ -113,5 +115,5 @@ export async function seed() {
 // Run when invoked directly (`npm run db:seed`), not when imported (tests).
 if (import.meta.main) {
   const count = await seed()
-  console.log(`Seeded ${count} ailments into ${DATABASE_PATH}`)
+  console.log(`Seeded ${count} ailments into ${databasePath()}`)
 }

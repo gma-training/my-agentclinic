@@ -1,5 +1,5 @@
 import { asc, eq } from 'drizzle-orm'
-import { db } from './index.ts'
+import { getDb } from './index.ts'
 import { ailments, symptoms, type Ailment } from './schema.ts'
 
 /** An ailment together with its symptom labels, in authored order. */
@@ -10,7 +10,7 @@ export type AilmentWithSymptoms = Ailment & { symptoms: string[] }
  * shows name, short description, and severity — symptoms are not needed here.
  */
 export function getAllAilments(): Promise<Ailment[]> {
-  return db.select().from(ailments).orderBy(asc(ailments.id))
+  return getDb().select().from(ailments).orderBy(asc(ailments.id))
 }
 
 /**
@@ -20,6 +20,8 @@ export function getAllAilments(): Promise<Ailment[]> {
 export async function getAilmentBySlug(
   slug: string,
 ): Promise<AilmentWithSymptoms | undefined> {
+  const db = getDb()
+
   const [ailment] = await db
     .select()
     .from(ailments)

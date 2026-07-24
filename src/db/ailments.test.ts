@@ -8,8 +8,10 @@ import { seedAilments } from './seed.ts'
 // truth: assertions compare against `seedAilments` instead of hard-coded copies
 // of its content — adding or reworording an ailment can't quietly break them.
 //
-// Setup points DATABASE_PATH at a throwaway file, then migrates + seeds it
-// before importing the module under test (which opens the database on import).
+// Setup points DATABASE_PATH at a throwaway file, then migrates + seeds it, so
+// the whole suite runs against an isolated database and never touches the dev
+// one. The connection is opened lazily on first query (see ./index.ts), so
+// setting the env in beforeAll — after this file's imports — takes effect.
 type AilmentsModule = typeof import('./ailments.ts')
 let getAllAilments: AilmentsModule['getAllAilments']
 let getAilmentBySlug: AilmentsModule['getAilmentBySlug']
