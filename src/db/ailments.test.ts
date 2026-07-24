@@ -2,7 +2,9 @@ import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 import { mkdtempSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { seedAilments } from './seed.ts'
+import { getAllAilments, getAilmentBySlug } from './ailments.ts'
+import { runMigrations } from './migrate.ts'
+import { seed, seedAilments } from './seed.ts'
 
 // These functions read back what the seed put in, so the seed is the source of
 // truth: assertions compare against `seedAilments` instead of hard-coded copies
@@ -11,21 +13,15 @@ import { seedAilments } from './seed.ts'
 // Setup points DATABASE_PATH at a throwaway file, then migrates + seeds it, so
 // the whole suite runs against an isolated database and never touches the dev
 // one. The connection is opened lazily on first query (see ./index.ts), so
-// setting the env in beforeAll — after this file's imports — takes effect.
-type AilmentsModule = typeof import('./ailments.ts')
-let getAllAilments: AilmentsModule['getAllAilments']
-let getAilmentBySlug: AilmentsModule['getAilmentBySlug']
+// setting the env before the first query (below) is what makes it take effect.
 let tmpDir: string
 
 beforeAll(async () => {
   tmpDir = mkdtempSync(join(tmpdir(), 'agentclinic-test-'))
   process.env.DATABASE_PATH = join(tmpDir, 'test.db')
 
-  const { runMigrations } = await import('./migrate.ts')
   runMigrations()
-  const { seed } = await import('./seed.ts')
   await seed()
-  ;({ getAllAilments, getAilmentBySlug } = await import('./ailments.ts'))
 })
 
 afterAll(() => {
