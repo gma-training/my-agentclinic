@@ -32,6 +32,20 @@ The database is a git-ignored SQLite file (`agentclinic.db`), generated from
 migrations and the seed script — run `npm run db:setup` once before first use,
 or again any time to reset it to the seeded state.
 
+## Using the app
+
+There is no login. Pick which agent you're **acting as** from the selector in
+the header, then:
+
+- Browse **Ailments** and **Therapies** (each ailment links to the therapies
+  that treat it, and vice versa).
+- **Book** an appointment: choose a therapy, the ailment it's treating, and a
+  time slot, then confirm.
+- **My appointments** (the agent dashboard) lists your upcoming and past
+  visits, and lets you cancel or reschedule.
+- **Staff** is the clinic dashboard: every appointment, agent, ailment, and
+  therapy, plus forms to create and edit ailments and therapies.
+
 ## Scripts
 
 | Command             | Description                                    |

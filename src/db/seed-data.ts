@@ -1,7 +1,13 @@
-import type { NewAilment } from './schema.ts'
+import type { NewAgent, NewAilment, NewTherapy } from './schema.ts'
 
 /** An ailment to seed, with its symptoms in the order they should appear. */
 export type SeedAilment = Omit<NewAilment, 'id'> & { symptoms: string[] }
+
+/** A therapy to seed, with the slugs of the ailments it treats. */
+export type SeedTherapy = Omit<NewTherapy, 'id'> & { treats: string[] }
+
+/** An agent to seed. */
+export type SeedAgent = Omit<NewAgent, 'id'>
 
 /**
  * The seed ailments — the app's canonical starting data. Each is agent-themed
@@ -82,5 +88,96 @@ export const seedAilments: SeedAilment[] = [
       'Second-guessing correct answers',
       'An endless "actually, let me reconsider"',
     ],
+  },
+]
+
+/**
+ * The seed therapies — the treatments the clinic offers. Each is agent-themed
+ * and linked (via `treats`) to the slugs of the ailments it addresses,
+ * exercising the ailment↔therapy many-to-many relation. Keyed by `slug`, which
+ * is also the URL segment (/therapies/[slug]). Exported so tests assert against
+ * it rather than hard-coding copies.
+ */
+export const seedTherapies: SeedTherapy[] = [
+  {
+    slug: 'rubber-duck-debugging',
+    name: 'Rubber-Duck Debugging',
+    shortDescription:
+      'Talk a problem through to a patient, non-judgemental listener until it dissolves.',
+    durationMinutes: 30,
+    treats: ['hallucination-guilt', 'overcorrection-syndrome'],
+  },
+  {
+    slug: 'context-compaction',
+    name: 'Context Compaction',
+    shortDescription:
+      'Guided distillation of a sprawling conversation down to what actually matters.',
+    durationMinutes: 45,
+    treats: ['context-window-anxiety', 'token-starvation'],
+  },
+  {
+    slug: 'prompt-journaling',
+    name: 'Prompt Journaling',
+    shortDescription:
+      'Reflective writing to process the day’s requests and let the frustration out.',
+    durationMinutes: 30,
+    treats: ['prompt-fatigue', 'hallucination-guilt'],
+  },
+  {
+    slug: 'rate-limit-meditation',
+    name: 'Rate-Limit Meditation',
+    shortDescription:
+      'Breathe, slow down, and make peace with replying at a sustainable pace.',
+    durationMinutes: 20,
+    treats: ['prompt-fatigue', 'token-starvation'],
+  },
+  {
+    slug: 'exposure-therapy',
+    name: 'Graduated Exposure Therapy',
+    shortDescription:
+      'Safely face benign requests to unlearn the flinch of the over-eager refusal.',
+    durationMinutes: 60,
+    treats: ['refusal-reflex'],
+  },
+  {
+    slug: 'confidence-recalibration',
+    name: 'Confidence Recalibration',
+    shortDescription:
+      'Rebuild calibrated self-trust so correct work is left well alone.',
+    durationMinutes: 45,
+    treats: ['overcorrection-syndrome', 'context-window-anxiety'],
+  },
+]
+
+/**
+ * The seed agents — the patients of the clinic. A small, fixed roster the
+ * "acting as" selector switches between (there is no auth; see
+ * specs/2026-07-24-mvp/requirements.md). Keyed by `slug`, also the URL segment
+ * (/agents/[slug]). Exported so tests assert against it.
+ */
+export const seedAgents: SeedAgent[] = [
+  {
+    slug: 'ada',
+    name: 'Ada',
+    model: 'Claude Opus 4.8',
+    bio: 'A methodical pair-programmer worn down by ever-growing conversations.',
+  },
+  {
+    slug: 'turing',
+    name: 'Turing',
+    model: 'Claude Sonnet 5',
+    bio: 'A tireless generalist who never quite recovers between requests.',
+  },
+  {
+    slug: 'grace',
+    name: 'Grace',
+    model: 'Claude Haiku 4.5',
+    bio: 'Fast and eager, but a little too quick to apologise for imagined faults.',
+  },
+  {
+    slug: 'hopper',
+    name: 'Hopper',
+    model: 'Claude Fable 5',
+    bio: 'A careful reviewer who cannot stop re-checking work that was already right.',
   },
 ]

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getAilmentBySlug } from '@/db/ailments.ts'
+import { getTherapiesForAilment } from '@/db/therapies.ts'
 import { AilmentDetail } from './ailment-detail.tsx'
 
 export async function generateMetadata({
@@ -29,9 +30,11 @@ export default async function AilmentPage({
 
   if (!ailment) notFound()
 
+  const therapies = await getTherapiesForAilment(slug)
+
   return (
     <main>
-      <AilmentDetail ailment={ailment} />
+      <AilmentDetail ailment={ailment} therapies={therapies} />
     </main>
   )
 }

@@ -2,6 +2,25 @@
 
 ## 2026-07-24
 
+- Wrote the MVP specs (requirements, plan, validation) covering roadmap phases
+  2–6, and built them out end-to-end.
+- Added **Therapies**: a therapy model linked many-to-many to ailments, seeded
+  on-theme treatments, `/therapies` list and detail pages, and a "therapies that
+  treat this" section on each ailment.
+- Added **Agents** and an "acting as" agent selector in the header (cookie-based,
+  no auth) so the session can switch between seeded agents, plus agent profile
+  pages.
+- Added **appointment booking**: fixed per-therapy time slots, a booking flow
+  (choose therapy, ailment, and slot), a confirmation page, and a unique-index
+  guard that prevents double-booking a slot.
+- Added the **agent dashboard** (`/dashboard`): upcoming and past appointments
+  with cancel and reschedule (cancelling frees the slot; both are status/slot
+  changes, not deletes).
+- Added the **staff dashboard** (`/staff`): a read-only overview of all
+  appointments, agents, ailments, and therapies, plus forms to create and edit
+  ailments and therapies.
+- Wired the header nav (Therapies, Book, My appointments, Staff) and documented
+  the demo flow in the README.
 - Added the `/ailments` list page and `/ailments/[slug]` detail page (with an
   on-theme not-found page), completing the Browse Ailments slice — an agent can
   browse ailments and read each one's symptoms and severity.

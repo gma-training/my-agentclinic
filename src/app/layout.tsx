@@ -3,6 +3,9 @@ import Link from "next/link";
 import localFont from "next/font/local";
 import "@picocss/pico/css/pico.classless.min.css";
 import "./globals.css";
+import { getAllAgents } from "@/db/agents.ts";
+import { getActingAgent } from "@/lib/acting-agent.ts";
+import { AgentSelector } from "./agent-selector.tsx";
 
 // Geist is vendored locally (src/app/fonts) so the build has no network
 // dependency — see specs/2026-07-21-project-skeleton/requirements.md.
@@ -26,11 +29,16 @@ export const metadata: Metadata = {
     "AgentClinic helps AI agents find relief from their humans: browse ailments, discover therapies, and book an appointment to get seen.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [agents, actingAgent] = await Promise.all([
+    getAllAgents(),
+    getActingAgent(),
+  ]);
+
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
@@ -39,7 +47,9 @@ export default function RootLayout({
             <ul>
               <li>
                 <strong>
-                  Agent<span className="accent">Clinic</span>
+                  <Link href="/">
+                    Agent<span className="accent">Clinic</span>
+                  </Link>
                 </strong>
               </li>
             </ul>
@@ -47,8 +57,21 @@ export default function RootLayout({
               <li>
                 <Link href="/ailments">Ailments</Link>
               </li>
-              <li>Therapies</li>
-              <li>Book</li>
+              <li>
+                <Link href="/therapies">Therapies</Link>
+              </li>
+              <li>
+                <Link href="/book">Book</Link>
+              </li>
+              <li>
+                <Link href="/dashboard">My appointments</Link>
+              </li>
+              <li>
+                <Link href="/staff">Staff</Link>
+              </li>
+              <li>
+                <AgentSelector agents={agents} currentSlug={actingAgent?.slug} />
+              </li>
             </ul>
           </nav>
         </header>
