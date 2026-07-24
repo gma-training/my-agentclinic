@@ -33,9 +33,7 @@ expect(allowed).toBe(true);
 
 *Why: the Arrange–Act–Assert shape makes each test's intent obvious at a glance
 and keeps a test focused on a single action. Split the "act" of a second,
-unrelated action into its own `it` block rather than stacking act/assert pairs.
-For component and async tests the same three phases apply — render/arrange the
-UI, dispatch one `userEvent` interaction, then assert with `findBy*`/jest-dom.*
+unrelated action into its own `it` block rather than stacking act/assert pairs.*
 
 ## Query and assert by accessible role or text, not by test ID or DOM structure
 
