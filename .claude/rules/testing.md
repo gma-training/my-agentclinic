@@ -13,6 +13,30 @@ rule below: a test should
 fail for exactly one reason, and its failure message should tell you what broke
 without opening the test.
 
+## Structure every test as Arrange — Act — Assert
+
+```ts
+// Muddled — setup, action, and checks are interleaved and hard to scan
+const user = makeUser({ role: 'admin' });
+expect(canEditSettings(user)).toBe(true);
+const guest = makeUser({ role: 'guest' });
+expect(canEditSettings(guest)).toBe(false);
+
+// Three phases, separated by a blank line: build inputs, run the behavior once,
+// then assert the outcome
+const user = makeUser({ role: 'admin' });
+
+const allowed = canEditSettings(user);
+
+expect(allowed).toBe(true);
+```
+
+*Why: the Arrange–Act–Assert shape makes each test's intent obvious at a glance
+and keeps a test focused on a single action. Split the "act" of a second,
+unrelated action into its own `it` block rather than stacking act/assert pairs.
+For component and async tests the same three phases apply — render/arrange the
+UI, dispatch one `userEvent` interaction, then assert with `findBy*`/jest-dom.*
+
 ## Query and assert by accessible role or text, not by test ID or DOM structure
 
 ```tsx
