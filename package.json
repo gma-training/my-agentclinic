@@ -2,16 +2,25 @@
   "name": "agentclinic",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest",
-    "test:e2e": "playwright test"
+    "test": "DATABASE_PATH=:memory: vitest --run",
+    "test:e2e": "playwright test",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "node src/db/migrate.ts",
+    "db:seed": "node src/db/seed.ts",
+    "db:setup": "npm run db:migrate && npm run db:seed"
   },
   "dependencies": {
     "@picocss/pico": "^2.1.1",
+    "drizzle-orm": "^1.0.0-rc.4",
     "next": "16.2.11",
     "react": "19.2.4",
     "react-dom": "19.2.4"
@@ -21,10 +30,11 @@
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/react": "^16.3.2",
-    "@types/node": "^20",
+    "@types/node": "^24.13.3",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.0.4",
+    "drizzle-kit": "^1.0.0-rc.4",
     "eslint": "^9",
     "eslint-config-next": "16.2.11",
     "jsdom": "^29.1.1",

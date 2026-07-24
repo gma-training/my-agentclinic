@@ -12,3 +12,24 @@
 .accent {
   color: var(--pico-primary);
 }
+
+/* Pico has no badge component, so the severity pill is our own small styling. */
+.severity {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--pico-border-radius);
+  font-size: 0.75em;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #fff;
+  background: var(--pico-muted-color);
+}
+.severity[data-severity='mild'] {
+  background: var(--pico-ins-color);
+}
+.severity[data-severity='moderate'] {
+  background: #b7791f;
+}
+.severity[data-severity='severe'] {
+  background: var(--pico-del-color);
+}

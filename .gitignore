@@ -21,6 +21,13 @@
 /.next/
 /out/
 
+# database — generated from ./drizzle migrations + seed, not committed
+# (the drizzle/ migration files ARE committed)
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
 # production
 /build
 

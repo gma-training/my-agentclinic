@@ -1,0 +1,66 @@
+# Phase 1 — Browse Ailments: Validation
+
+The phase is done and mergeable when all of the following hold.
+
+## Data layer
+
+- [x] A SQLite database is defined with Drizzle: an `ailments` table
+      (`id`, unique `slug`, `name`, `shortDescription`, `severity`) and a
+      related `symptoms` table (one ailment → many symptoms).
+- [x] `severity` is constrained to `mild | moderate | severe` at the type
+      boundary.
+- [x] A seed script populates ~6 on-theme ailments (each with a slug, severity,
+      and symptoms) and is safe to re-run (idempotent).
+- [x] `getAllAilments()` returns every seeded ailment; `getAilmentBySlug(slug)`
+      returns one ailment (with its symptoms) or a not-found result for an
+      unknown slug. Both are covered by passing Vitest tests.
+
+## List page (`/ailments`)
+
+- [x] `/ailments` lists **all** seeded ailments, each showing name, short
+      description, and a severity badge.
+- [x] Each list item links to that ailment's detail page.
+- [x] The page has an appropriate title/metadata.
+
+## Detail page (`/ailments/[slug]`)
+
+- [x] `/ailments/[slug]` shows the ailment's name, severity, short description,
+      and its list of symptoms.
+- [x] A link returns the user to `/ailments`.
+- [x] An unknown slug (e.g. `/ailments/does-not-exist`) renders an on-theme
+      not-found UI **and** responds with HTTP 404.
+
+## Navigation
+
+- [x] The header "Ailments" nav item links to `/ailments`.
+- [x] "Therapies" and "Book" remain inert (unchanged from Phase 0).
+
+## Tests
+
+- [x] `npm test` (Vitest) passes: data-access and presentational-component
+      tests are green.
+- [x] `npm run test:e2e` (Playwright) passes: list shows all ailments, clicking
+      through reaches a detail page with symptoms/severity, and an unknown slug
+      404s.
+
+## Build & scripts
+
+- [x] `npm run build` completes with **no** TypeScript or lint errors
+      (`strict` stays on).
+- [x] `npm run lint` passes.
+- [x] `npm run dev` serves `/ailments` and a detail page in a modern browser
+      with Pico styling applied.
+- [x] Documented setup (generate/migrate/seed) works from a fresh clone so a
+      reviewer can get a populated database and run the app.
+
+## Docs
+
+- [x] [tech-stack.md](../tech-stack.md) records the database decision (SQLite +
+      Drizzle + `node:sqlite`), replacing the deferred-decision note.
+- [x] `README.md` documents the database setup/seed steps.
+
+## Outcome check
+
+- [x] Per the roadmap: **an agent can see what ails them.** A reviewer can run
+      the app, open `/ailments`, browse the list, and click into an ailment to
+      read its details — the slice is demoable end-to-end.
