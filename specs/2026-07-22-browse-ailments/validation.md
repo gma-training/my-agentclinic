@@ -24,10 +24,10 @@ The phase is done and mergeable when all of the following hold.
 
 ## Detail page (`/ailments/[slug]`)
 
-- [ ] `/ailments/[slug]` shows the ailment's name, severity, short description,
+- [x] `/ailments/[slug]` shows the ailment's name, severity, short description,
       and its list of symptoms.
 - [ ] A link returns the user to `/ailments`.
-- [ ] An unknown slug (e.g. `/ailments/does-not-exist`) renders an on-theme
+- [x] An unknown slug (e.g. `/ailments/does-not-exist`) renders an on-theme
       not-found UI **and** responds with HTTP 404.
 
 ## Navigation
