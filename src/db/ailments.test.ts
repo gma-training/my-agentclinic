@@ -1,4 +1,5 @@
-import { beforeAll, describe, expect, test } from 'vitest'
+import { afterEach, beforeAll, beforeEach, describe, expect, test } from 'vitest'
+import { getDb } from './index.ts'
 import { getAllAilments, getAilmentBySlug } from './ailments.ts'
 import { runMigrations } from './migrate.ts'
 import { seed, seedAilments } from './seed.ts'
@@ -8,9 +9,10 @@ import { seed, seedAilments } from './seed.ts'
 // of its content — adding or reworording an ailment can't quietly break them.
 //
 // The suite runs against whatever DATABASE_PATH points at; the `test` npm
-// script sets it to a throwaway file so the dev database is never touched. We
-// migrate + seed that database once up front — but guard first, so a bare
-// `vitest` run that forgot the env can't silently clobber the default database.
+// script sets it to `:memory:`, so each worker gets its own throwaway in-memory
+// database and the dev database is never touched. We migrate + seed it once up
+// front — but guard first, so a bare `vitest` run that forgot the env can't
+// silently clobber the default (on-disk) database.
 beforeAll(async () => {
   if (!process.env.DATABASE_PATH) {
     throw new Error(
@@ -20,6 +22,21 @@ beforeAll(async () => {
 
   runMigrations()
   await seed()
+})
+
+// Seed once, then run each test inside a transaction that is rolled back
+// afterwards: every test starts from the pristine seed and its own writes are
+// undone, so tests stay order-independent without re-seeding between them.
+// Today's tests only read; this wraps them anyway so the isolation contract is
+// established now and any future write test inherits it for free. (`node:sqlite`
+// is synchronous, so no awaits — and don't add a `db.transaction()` inside a
+// test, as SQLite can't nest transactions within this outer one.)
+beforeEach(() => {
+  getDb().$client.exec('BEGIN')
+})
+
+afterEach(() => {
+  getDb().$client.exec('ROLLBACK')
 })
 
 // Any seeded ailment stands in for "a real one" in the single-record tests.
