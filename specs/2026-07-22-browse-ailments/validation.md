@@ -17,10 +17,10 @@ The phase is done and mergeable when all of the following hold.
 
 ## List page (`/ailments`)
 
-- [ ] `/ailments` lists **all** seeded ailments, each showing name, short
+- [x] `/ailments` lists **all** seeded ailments, each showing name, short
       description, and a severity badge.
-- [ ] Each list item links to that ailment's detail page.
-- [ ] The page has an appropriate title/metadata.
+- [x] Each list item links to that ailment's detail page.
+- [x] The page has an appropriate title/metadata.
 
 ## Detail page (`/ailments/[slug]`)
 
